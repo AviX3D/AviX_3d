@@ -5,8 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVIX_3D - Boutique</title>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init("i-3AVYm2Zbt1mAsOA","template_58wu2p9");
+    })();
+  </script>
 </head>
 <body>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("i-3AVYm2Zbt1mAsOA","template_58wu2p9");
+  })();
+
+  const panier = [];
+
+  function ajouterAuPanier(produit, prix) {
+    panier.push({ produit, prix });
+    alert(produit + " ajouté au panier !");
+  }
+
+  function validerCommande() {
+    if (panier.length === 0) {
+      alert("Votre panier est vide.");
+      return;
+    }
+
+    const nom = prompt("Votre nom :");
+    const email = prompt("Votre email :");
+
+    let total = 0;
+    let details = "Facture AVIX_3D\n-----------------------\n";
+
+    panier.forEach(item => {
+      details += `${item.produit} : ${item.prix.toFixed(2)} €\n`;
+      total += item.prix;
+    });
+
+    details += "-----------------------\n";
+    details += `Total : ${total.toFixed(2)} €\n`;
+    details += "Merci pour votre commande !";
+
+    emailjs.send("VOTRE_SERVICE_ID", "VOTRE_TEMPLATE_ID", {
+      name: nom,
+      email: email,
+      facture: details
+    }).then(() => {
+      alert("Facture envoyée par mail !");
+      panier.length = 0; // vider le panier
+    }, (err) => {
+      alert("Erreur : " + JSON.stringify(err));
+    });
+  }
+</script>
+  
   <header>
     <h1>AVIX_3D</h1>
     <nav>
@@ -31,16 +85,19 @@
         <h3>Support volant</h3>
         <p>Stable, imprimé en PLA renforcé.</p>
         <p class="prix">29,90 €</p>
-        <button>Ajouter au panier</button>
+        <button onclick="ajouterAuPanier('Support volant', 29.90)">Ajouter au panier</button>
       </div>
       <div class="carte">
         <img src="produit2.jpg" alt="Produit 2">
         <h3>Boîte à boutons</h3>
         <p>Compatible tous jeux PC.</p>
         <p class="prix">59,90 €</p>
-        <button>Ajouter au panier</button>
+        <button onclick="ajouterAuPanier('Boîte à boutons', 59.90)">Ajouter au panier</button>
       </div>
-      <!-- Ajoute d'autres produits ici -->
+      <div class="carte">
+        <h3>validation</h3>
+        <button onclick="validerCommande()">Valider ma commande</button>
+      </div>
     </div>
   </section>
 
