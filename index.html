@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script type="text/javascript">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
     (function(){
-      emailjs.init("i-3AVYm2Zbt1mAsOA"); // Remplace avec ton vrai User ID
+      emailjs.init("i-3AVYm2Zbt1mAsOA"); // Ta clé publique
     })();
   </script>
 </head>
@@ -49,7 +50,7 @@
     details += `Total : ${total.toFixed(2)} €\n`;
     details += "Merci pour votre commande !";
 
-    emailjs.send("VOTRE_SERVICE_ID", "VOTRE_TEMPLATE_ID", {
+    emailjs.send("service_vh3kpcp", "template_4r3dy6n", {
       name: nom,
       email: email,
       facture: details
@@ -120,4 +121,5 @@
   </footer>
 </body>
 </html>
+
 
