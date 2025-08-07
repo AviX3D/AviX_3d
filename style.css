@@ -110,3 +110,66 @@ footer {
   color: white;
   font-size: 0.9rem;
 }
+
+.validation-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: 30px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+  }
+  
+  .bouton-validation {
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bouton-validation:hover {
+    background-color: #218838;
+  }
+  
+  
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  
+  .contact-form, .contact-socials {
+    flex: 1 1 45%;
+  }
+  
+  .contact-socials h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-socials ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact-socials li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-socials a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .contact-socials a:hover {
+    color: #007BFF;
+  }
+  
