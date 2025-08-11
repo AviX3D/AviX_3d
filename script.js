@@ -91,14 +91,22 @@ function validerCommande() {
     return;
   }
 
+  // Construire un tableau d'objets avec nom, quantite, prix unitaire
+  const produitsObjets = panier.map(p => ({
+    nom: p.produit,
+    quantite: p.quantite,
+    prix: p.prix
+  }));
+
   const commande = {
     email: emailClient,
-    produits: panier.map(p => `${p.produit} x${p.quantite} - ${(p.prix * p.quantite).toFixed(2)} €`),
-    total: panier.reduce((sum, p) => sum + (p.prix * p.quantite), 0).toFixed(2)
+    produits: produitsObjets
+    // Pas besoin de total, le serveur calcule
   };
 
   fetch("https://script.google.com/macros/s/AKfycbzDGcbDVjloDXVQDb6FVtDWXCOaLyhdgrODGPJsKtWBE9fvI5kniWlNCIlPRlstejgX/exec", {
     method: "POST",
+    headers: { "Content-Type": "application/json" }, // bien préciser le type JSON
     body: JSON.stringify(commande)
   })
   .then(res => res.text())
@@ -149,3 +157,49 @@ overlay.addEventListener("click", () => {
   overlay.classList.add("hidden");
 });
 
+document.querySelectorAll('.carousel-produit').forEach(carousel => {
+  let images = carousel.querySelectorAll('img');
+  let prevBtn = carousel.querySelector('.prev');
+  let nextBtn = carousel.querySelector('.next');
+  let index = 0;
+  let autoSlide;
+
+  function showImage(i) {
+    images.forEach(img => img.classList.remove('active'));
+    images[i].classList.add('active');
+  }
+
+  function nextImage() {
+    index = (index + 1) % images.length;
+    showImage(index);
+  }
+
+  function prevImage() {
+    index = (index - 1 + images.length) % images.length;
+    showImage(index);
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextImage, 8000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlide);
+  }
+
+  prevBtn.addEventListener('click', () => {
+    prevImage();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    nextImage();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+
+  // Initialisation
+  showImage(index);
+  startAutoSlide();
+});
