@@ -36,17 +36,17 @@
     <div class="grid">
       <div class="carte">
         <img src="IMG_3615 - Copie.png" alt="Produit 1">
-        <h3>Retour de force frein</h3>
+        <h3>Retour de force frein G920/G29/G923</h3>
         <p>Stable, imprimé en PLA renforcé.</p>
         <p class="prix">49,90 €</p>
-        <button onclick="ajouterAuPanier('Retour de force frein G920/G29/G923', 49.90)">Ajouter au panier</button>
+        <button onclick="ajouterAuPanier('Retour de force frein ', 49.90)">Ajouter au panier</button>
       </div>
       <div class="carte">
         <img src="produit2.png" alt="Produit 2">
         <h3>Support mural</h3>
         <p>Compatible tous les volants logitech.</p>
         <p class="prix">4.99 €</p>
-        <button onclick="ajouterAuPanier('Support mural G920/G29/G923', 4.99)">Ajouter au panier</button>
+        <button onclick="ajouterAuPanier('Support mural', 4.99)">Ajouter au panier</button>
       </div>
       <div class="carte">
         <img src="Racelogic.png" alt="Produit 3" />
@@ -58,14 +58,29 @@
     </div>
   </section>
 
-  <!-- Section Panier -->
-  <section id="panier-section" class="panier">
-    <h2>Votre panier</h2>
-    <button class="btn-vider" onclick="viderPanier()">Vider le panier </button>
-    <ul id="liste-panier"></ul>
-    <p id="total-panier">Total : 0.00 €</p>
-    <button class="btn-valider" onclick="validerCommande()">Valider ma commande</button>
-  </section>
+
+<section >
+<div id="overlay" class="hidden"></div>
+
+  <!-- Bouton flottant du panier -->
+  <div id="cart-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+      </svg>
+    <span id="cart-count">0</span>
+  </div>
+
+  <!-- Panneau du panier -->
+  <div id="cart-panel" class="hidden">
+  <h3>Votre Panier</h3>
+  <ul id="liste-panier"></ul>
+  <p id="total-panier">Total : 0 €</p>
+  <button onclick="viderPanier()">Vider</button>
+  <button onclick="validerCommande()">Commander</button>
+  
+
+</div>
+</section>
 
   <section id="contact" class="contact">
     <h2>Contact</h2>
@@ -84,5 +99,4 @@
   <script src="script.js"></script>
 </body>
 </html>
-
 
