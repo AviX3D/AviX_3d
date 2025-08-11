@@ -180,4 +180,97 @@ body {
     background-color: #218838;
   }
   
-  
+/* Bouton flottant */
+#cart-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff9800;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1001;
+}
+
+#cart-button span {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 14px;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+}
+
+/* Panneau du panier */
+#cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%; /* 1/4 de l'écran */
+  height: 100%;
+  background: white;
+  border-left: 1px solid #ccc;
+  padding: 15px;
+  overflow-y: auto;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+/* Cacher le panier */
+.hidden {
+  display: none;
+}
+
+/* Overlay sombre avec dégradé */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+  z-index: 9;
+}
+
+/* Bouton flottant */
+#cart-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ff9800;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 11;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+}
+
+/* Panneau panier */
+#cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+  z-index: 10;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Masqué par défaut */
+.hidden {
+  display: none;
+}
