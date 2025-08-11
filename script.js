@@ -91,22 +91,17 @@ function validerCommande() {
     return;
   }
 
-  // Construire un tableau d'objets avec nom, quantite, prix unitaire
-  const produitsObjets = panier.map(p => ({
-    nom: p.produit,
-    quantite: p.quantite,
-    prix: p.prix
-  }));
-
   const commande = {
     email: emailClient,
-    produits: produitsObjets
-    // Pas besoin de total, le serveur calcule
+    produits: panier.map(p => `${p.produit} x${p.quantite} - ${(p.prix * p.quantite).toFixed(2)} €`),
+    total: panier.reduce((sum, p) => sum + (p.prix * p.quantite), 0).toFixed(2)
   };
+
+  const loader = document.getElementById("loader");
+  loader.classList.remove("hidden");  // afficher le loader
 
   fetch("https://script.google.com/macros/s/AKfycbzDGcbDVjloDXVQDb6FVtDWXCOaLyhdgrODGPJsKtWBE9fvI5kniWlNCIlPRlstejgX/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" }, // bien préciser le type JSON
     body: JSON.stringify(commande)
   })
   .then(res => res.text())
@@ -118,8 +113,12 @@ function validerCommande() {
   })
   .catch(err => {
     alert("Erreur lors de l'envoi : " + err);
+  })
+  .finally(() => {
+    loader.classList.add("hidden");  // cacher le loader après succès ou erreur
   });
 }
+
 
 // Sauvegarder dans localStorage
 function sauvegarderPanier() {
@@ -202,4 +201,10 @@ document.querySelectorAll('.carousel-produit').forEach(carousel => {
   // Initialisation
   showImage(index);
   startAutoSlide();
+});
+
+const closeCartBtn = document.getElementById("close-cart");
+closeCartBtn.addEventListener("click", () => {
+  cartPanel.classList.add("hidden");
+  overlay.classList.add("hidden");
 });
