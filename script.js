@@ -1,4 +1,9 @@
-const panier = [];
+// Récupérer le panier depuis localStorage ou initialiser vide
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+const listePanier = document.getElementById('liste-panier');
+const totalPanier = document.getElementById('total-panier');
+const cartCount = document.getElementById('cart-count');
 
 // Ajouter un produit au panier (avec gestion de quantités)
 function ajouterAuPanier(produit, prix) {
@@ -10,13 +15,13 @@ function ajouterAuPanier(produit, prix) {
     panier.push({ produit, prix, quantite: 1 });
   }
 
+  sauvegarderPanier();
   afficherPanier();
 }
 
 // Afficher le panier avec quantités
 function afficherPanier() {
-  const listePanier = document.getElementById('liste-panier');
-  listePanier.innerHTML = '';
+listePanier.innerHTML = '';
   let total = 0;
 
   panier.forEach((item, index) => {
@@ -37,7 +42,8 @@ function afficherPanier() {
     `;
   });
 
-  document.getElementById('total-panier').innerText = `Total : ${total.toFixed(2)} €`;
+  totalPanier.innerText = `Total : ${total.toFixed(2)} €`;
+  cartCount.innerText = panier.reduce((sum, p) => sum + p.quantite, 0);
 }
 
 // Modifier la quantité d'un produit
@@ -48,12 +54,14 @@ function changerQuantite(index, changement) {
     panier.splice(index, 1);
   }
 
+  sauvegarderPanier();
   afficherPanier();
 }
 
 // Supprimer un produit
 function supprimerDuPanier(index) {
   panier.splice(index, 1);
+  sauvegarderPanier();
   afficherPanier();
 }
 
@@ -65,6 +73,7 @@ function viderPanier() {
   }
   if (confirm("Voulez-vous vraiment vider le panier ?")) {
     panier.length = 0;
+    sauvegarderPanier();
     afficherPanier();
   }
 }
@@ -96,11 +105,17 @@ function validerCommande() {
   .then(() => {
     alert("Commande envoyée avec succès !");
     panier.length = 0;
+    sauvegarderPanier();
     afficherPanier();
   })
   .catch(err => {
     alert("Erreur lors de l'envoi : " + err);
   });
+}
+
+// Sauvegarder dans localStorage
+function sauvegarderPanier() {
+  localStorage.setItem("panier", JSON.stringify(panier));
 }
 
 // Vérifier email
@@ -110,3 +125,27 @@ function validateEmail(email) {
 
 // Initialiser
 afficherPanier();
+
+// Sélecteurs
+const cartButton = document.getElementById("cart-button");
+const cartPanel = document.getElementById("cart-panel");
+const overlay = document.getElementById("overlay");
+
+// Toggle panier
+cartButton.addEventListener("click", () => {
+  const isHidden = cartPanel.classList.contains("hidden");
+  if (isHidden) {
+    cartPanel.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+  } else {
+    cartPanel.classList.add("hidden");
+    overlay.classList.add("hidden");
+  }
+});
+
+// Clic sur overlay = fermer panier
+overlay.addEventListener("click", () => {
+  cartPanel.classList.add("hidden");
+  overlay.classList.add("hidden");
+});
+
