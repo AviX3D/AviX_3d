@@ -18,6 +18,35 @@ body {
     margin: 0;
     font-size: 1.5rem;
   }
+
+  .container {
+  width: 90%;  /* au lieu de 1200px */
+  max-width: 600px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  table {
+    font-size: 12px;
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+}
+
   
   nav ul {
     list-style: none;
