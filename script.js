@@ -208,3 +208,32 @@ closeCartBtn.addEventListener("click", () => {
   cartPanel.classList.add("hidden");
   overlay.classList.add("hidden");
 });
+
+//FAQ
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const data = {
+            nom: form.nom.value,
+            email: form.email.value,
+            message: form.message.value
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbxyzWnBrh7otwQjCZGVPYV79U5Lw5GmtvrXf49hK7EKwlKNiLVkJ0cK_mn4djtR5O2Y/exec", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(() => {
+            status.textContent = "Message envoyé ✅";
+            form.reset();
+        })
+        .catch(() => {
+            status.textContent = "Erreur d'envoi ❌";
+        });
+    });
+});
