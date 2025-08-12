@@ -107,15 +107,16 @@
 </div>
 </section>
 
-  <section id="contact" class="contact">
-    <h2>Contact et demande spécifique</h2>
-    <form>
-      <input type="text" placeholder="Nom">
-      <input type="email" placeholder="Email">
-      <textarea placeholder="Votre message"></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </section>
+<section id="contact" class="contact">
+  <h2>Contact et demande spécifique</h2>
+  <form id="contact-form">
+    <input type="text" name="nom" placeholder="Nom" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="Votre message" required></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+  <p id="form-status"></p>
+</section>
 
   <footer>
     <p>&copy; 2025 AVIX_3D - Tous droits réservés.</p>
