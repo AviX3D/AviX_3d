@@ -19,6 +19,24 @@ body {
     font-size: 1.5rem;
   }
 
+  .menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centre tout le contenu horizontalement */
+  gap: 20px; /* Espace entre les éléments */
+  padding: 0;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  display: block;
+}
+
   .container {
   width: 90%;  /* au lieu de 1200px */
   max-width: 600px;
