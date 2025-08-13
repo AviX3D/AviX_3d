@@ -271,3 +271,26 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+
+const API_URL = "https://script.google.com/macros/s/AKfycbw3_VZzFz9bAbe2-j0MkN5RdMKD-bIP47TG96OaYdSjP5NLrHNX9lCStpIHCjwbQZg8VQ/exec"; // Remplace par ton lien déployé
+
+fetch(API_URL)
+  .then(res => res.json())
+  .then(data => {
+    // Moyenne
+    const moy = data.moyenne.toFixed(1);
+    document.getElementById("moyenne").innerHTML = 
+      `<h3>Note moyenne : ${moy} ★</h3>`;
+
+    // Liste des avis
+    let html = "";
+    data.avis.forEach(a => {
+      html += `
+        <div class="avis-card">
+          <div>${"★".repeat(a.note)}${"☆".repeat(5-a.note)}</div>
+          <p>${a.commentaire}</p>
+        </div>`;
+    });
+    document.getElementById("liste-avis").innerHTML = html;
+  });
