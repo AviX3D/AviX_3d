@@ -96,25 +96,36 @@
       </svg>
     </button>
   </h3>
-  <div class="loader hidden" id="loader"></div>
+
   <ul id="liste-panier"></ul>
   <p id="total-panier">Total : 0 €</p>
-  <button onclick="viderPanier()">Vider</button>
-  <button onclick="validerCommande()">Commander</button>
-</div>
 
+  <!-- Boutons -->
+  <button onclick="viderPanier()">Vider</button>
+  <button id="btn-commander">Commander</button>
+
+  <!-- Zone pour le champ email et le statut -->
+  <div id="email-container" style="margin-top:10px; display:none;">
+    <input type="email" id="email-panier" name="email" placeholder="Votre email" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    <button id="btn-envoyer" style="margin-top:5px;">Envoyer la commande</button>
+  </div>
+
+  <p id="panier-status" style="margin-top: 10px;"></p>
+</div>
 
 </div>
 </section>
 
 <section id="contact" class="contact">
   <h2>Contact et demande spécifique</h2>
-  <form id="contact-form">
-    <input type="text" name="nom" placeholder="Nom" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Votre message" required></textarea>
-    <button type="submit">Envoyer</button>
-  </form>
+  <form id="contactForm">
+    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+    <input type="email" id="email" name="email" placeholder="Votre email" required>
+    <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+    <button type="submit" id="submitBtn">
+    Envoyer
+  </button>
+</form>
   <p id="form-status"></p>
 </section>
 
