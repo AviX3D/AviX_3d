@@ -264,19 +264,61 @@ button {
 }
 
 /* Panneau du panier */
+/* Panneau panier toujours sur le côté */
 #cart-panel {
   position: fixed;
   top: 0;
   right: 0;
   width: 25%; /* 1/4 de l'écran */
+  min-width: 250px; /* largeur minimum pour petits écrans */
   height: 100%;
   background: white;
-  border-left: 1px solid #ccc;
-  padding: 15px;
-  overflow-y: auto;
-  box-shadow: -4px 0 10px rgba(0,0,0,0.3);
+  box-shadow: -4px 0 8px rgba(0,0,0,0.2);
   z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
 }
+
+/* Masqué par défaut */
+.hidden {
+  display: none !important;
+}
+
+/* Responsive : adapter le contenu du panier sur mobile */
+@media (max-width: 768px) {
+  #cart-panel {
+    width: 40%; /* reste sur le côté mais plus large */
+    min-width: 200px;
+    padding: 15px;
+  }
+
+  #liste-panier li,
+  .panier-item {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  #liste-panier li button,
+  .panier-item button {
+    margin-top: 5px;
+  }
+
+  .btn-valider,
+  .btn-vider {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  /* Champ email */
+  #email-panier {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
 
 /* Cacher le panier */
 .hidden {
