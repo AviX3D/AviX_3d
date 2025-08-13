@@ -1,0 +1,183 @@
+<section class="form-avis-container">
+  <h2>Donnez votre avis</h2>
+
+  <form id="avis-form" novalidate>
+    <input
+      type="text"
+      id="commande"
+      name="commande"
+      placeholder="Numéro de commande (17 chiffres)"
+      inputmode="numeric"
+      pattern="\d{17}"
+      required
+    >
+
+    <div class="rating" id="rating" aria-label="Note">
+      <span data-value="5" role="button" aria-label="5 étoile"  tabindex="0">★</span>
+      <span data-value="4" role="button" aria-label="4 étoiles" tabindex="0">★</span>
+      <span data-value="3" role="button" aria-label="3 étoiles" tabindex="0">★</span>
+      <span data-value="2" role="button" aria-label="2 étoiles" tabindex="0">★</span>
+      <span data-value="1" role="button" aria-label="1 étoiles" tabindex="0">★</span>
+    </div>
+
+    <textarea id="commentaire" name="commentaire" placeholder="Votre commentaire" rows="4" ></textarea>
+
+    <button type="submit" id="submit-avis">Envoyer mon avis</button>
+    <p id="result" class="result" aria-live="polite"></p>
+  </form>
+</section>
+
+
+
+<style>
+/* ----- Page Avis (form) ----- */
+.form-avis-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  margin: 32px auto;
+  max-width: 700px;
+}
+
+.form-avis-container h2 {
+  color: #111;
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 1.8rem;
+}
+
+.form-avis-container input,
+.form-avis-container textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  background: #fafafa;
+}
+
+.form-avis-container input:focus,
+.form-avis-container textarea:focus {
+  border-color: #e62429;
+  box-shadow: 0 0 0 3px rgba(230,36,41,0.12);
+  background: #fff;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 28px;
+  color: #ccc;
+  cursor: pointer;
+  margin: 14px 0;
+  /* pour que le survol remplisse vers la gauche avec le sélecteur ~ */
+  flex-direction: row-reverse;
+}
+
+.rating span {
+  user-select: none;
+  line-height: 1;
+  transition: transform .1s ease, color .2s ease;
+}
+
+.rating span:hover,
+.rating span:hover ~ span {
+  color: #ffc107;
+  transform: translateY(-1px);
+}
+
+.rating .selected {
+  color: #ffc107;
+}
+
+#submit-avis {
+  background: #e62429;
+  color: #fff;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: transform .05s ease, background .2s;
+}
+
+#submit-avis:hover { background: #c91f22; }
+#submit-avis:active { transform: translateY(1px); }
+#submit-avis:disabled { opacity: .6; cursor: not-allowed; }
+
+.result {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.result.ok { color: #2e7d32; }
+.result.err { color: #c62828; }
+
+@media (max-width: 600px) {
+  .form-avis-container { padding: 18px; margin: 24px 12px; }
+  .rating { font-size: 26px; }
+}
+</style>
+
+<script>
+const API_URL_POST = "https://script.google.com/macros/s/AKfycbw3_VZzFz9bAbe2-j0MkN5RdMKD-bIP47TG96OaYdSjP5NLrHNX9lCStpIHCjwbQZg8VQ/exec";
+let note = 0;
+const stars = document.querySelectorAll(".rating span");
+
+// Gestion clic étoiles
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    note = parseInt(star.dataset.value);
+    stars.forEach(s => {
+      s.classList.toggle("selected", parseInt(s.dataset.value) <= note);
+    });
+  });
+
+  star.addEventListener("mouseover", () => {
+    const val = parseInt(star.dataset.value);
+    stars.forEach(s => s.classList.toggle("hover", parseInt(s.dataset.value) <= val));
+  });
+
+  star.addEventListener("mouseout", () => {
+    stars.forEach(s => s.classList.remove("hover"));
+  });
+});
+
+
+// Envoi formulaire
+document.getElementById("submit-avis").addEventListener("click", (e) => {
+  e.preventDefault();
+  const num = document.getElementById("commande").value.trim();
+  const comment = document.getElementById("commentaire").value.trim();
+
+  if (!note) {
+    document.getElementById("result").textContent = "Veuillez choisir une note.";
+    document.getElementById("result").className = "result err";
+    return;
+  }
+
+  // Message pendant l'envoi
+  document.getElementById("result").textContent = "Envoi en cours...";
+  document.getElementById("result").className = "result info";
+
+  fetch(API_URL_POST, {
+    method: "POST",
+    body: JSON.stringify({ num_commande: num, note: note, commentaire: comment })
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("result").textContent = data.message;
+    document.getElementById("result").className = "result ok";
+  })
+  .catch(() => {
+    document.getElementById("result").textContent = "Erreur d'envoi.";
+    document.getElementById("result").className = "result err";
+  });
+});
+</script>
