@@ -120,7 +120,7 @@ btnEnvoyer.addEventListener("click", () => {
   })
   .then(res => res.text())
   .then(() => {
-    status.textContent = "Commande envoyée avec succès ! Un mail vous a été envoyé avec le récapitulatif de votre commande. Pour le payement Merci d'envoyer la somme a portelion72@gmail.com sur paypal";
+    status.textContent = "Commande envoyée avec succès ! Un mail vous a été envoyé avec le récapitulatif de votre commande.";
     status.style.color = "green";
     panier.length = 0;
     sauvegarderPanier();
@@ -294,3 +294,4 @@ fetch(API_URL)
     });
     document.getElementById("liste-avis").innerHTML = html;
   });
+
