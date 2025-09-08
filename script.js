@@ -114,7 +114,7 @@ btnEnvoyer.addEventListener("click", () => {
   status.textContent = "Envoi de la commande...";
   status.style.color = "black";
 
-  fetch("https://script.google.com/macros/s/AKfycbzDGcbDVjloDXVQDb6FVtDWXCOaLyhdgrODGPJsKtWBE9fvI5kniWlNCIlPRlstejgX/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyP62KXdBgWFDC7sU2i60F4M8UFkL_qxHY90YgTueacrDyblAEsJ0ob-gyavkOZCuJbGQ/exec", {
     method: "POST",
     body: JSON.stringify(commande)
   })
@@ -294,5 +294,6 @@ fetch(API_URL)
     });
     document.getElementById("liste-avis").innerHTML = html;
   });
+
 
 
