@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta google-site-verification: google7919ac7371846fe8.html> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVIX_3D - Frein</title>
+    <meta name="AVIX_3D">
+    <link rel="icon" href="D645FA65-FDB7-4A38-B087-9869C76E8294.png">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1><a href="index.html" style="color:white;text-decoration:none;">AVIX_3D</a></h1>
+    <nav>
+      <ul class="menu">
+        <li class="logo">
+          <a href="index.html">
+            <img src="D645FA65-FDB7-4A38-B087-9869C76E8294.png" alt="Logo" width="100" height="100">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-produit">
+    <!-- Colonne gauche : photos -->
+    <div class="produit-photos">
+      <img id="photo-principale" src="IMG_3698.png" alt="Frein" class="photo-principale">
+      <div class="galerie">
+        <img src="IMG_3698.png" alt="Vue 1" onclick="changerImage(this)">
+        <img src="IMG_3699.png" alt="Vue 2" onclick="changerImage(this)">
+        <img src="IMG_3701.png" alt="Vue 3" onclick="changerImage(this)">
+        <img src="IMG_3702.png" alt="Vue 4" onclick="changerImage(this)">
+        <img src="IMG_3700.png" alt="Vue 5" onclick="changerImage(this)">
+      </div>
+    </div>
+
+    <!-- Colonne droite : infos & options -->
+    <div class="produit-details">
+      <h2>Laptimer "Racelogic"</h2>
+      <p class="prix" id="prix-produit">99,99€</p>
+
+      <!-- Couleurs -->
+      <div class="option-block">
+        <label>Couleur :</label>
+        <div class="options couleurs">
+          <button class="color-btn" style="background:blue" data-value="Bleu" onclick="setOption('couleur', this)"></button>
+          <button class="color-btn" style="background:black" data-value="Noir" onclick="setOption('couleur', this)"></button>
+          <button class="color-btn" style="background:white" data-value="Blanc" onclick="setOption('couleur', this)"></button>
+          <button class="color-btn" style="background:red" data-value="Rouge" onclick="setOption('couleur', this)"></button>
+          <button class="color-btn" style="background:green" data-value="Vert" onclick="setOption('couleur', this)"></button>
+        </div>
+      </div>
+
+      <!-- USB -->
+      <div class="option-block">
+        <label>Longueur du câble USB :</label>
+        <div class="options usb">
+          <button class="cable-btn" data-value="0" onclick="setOption('usb', this)">
+            <div class="bar"></div>Sans USB
+          </button>
+          <button class="cable-btn" data-value="1m" onclick="setOption('usb', this)">
+            <div class="bar quarter"></div>1 m
+          </button>
+          <button class="cable-btn" data-value="1.5m" onclick="setOption('usb', this)">
+            <div class="bar half"></div>1,5 m
+          </button>
+          <button class="cable-btn" data-value="2m" onclick="setOption('usb', this)">
+            <div class="bar three-quarter"></div>2 m
+          </button>
+          <button class="cable-btn" data-value="3m" onclick="setOption('usb', this)">
+            <div class="bar full"></div>3 m
+          </button>
+        </div>
+      </div>
+
+      <!-- Texture -->
+      <div class="option-block">
+        <label>Motif sur la face avant :</label>
+        <div class="options textures">
+          <button class="texture-btn" data-value="Carbone" onclick="setOption('texture', this)">
+            <img src="carbon_fiber.png" alt="Carbone">
+            <span>Carbone</span>
+          </button>
+          <button class="texture-btn" data-value="Texturé" onclick="setOption('texture', this)">
+            <img src="texturé.jpg" alt="Texturé">
+            <span>Texturé</span>
+          </button>
+        </div>
+      </div>
+
+
+
+      <button class="btn-panier" onclick="ajouterProduit()">Ajouter au panier</button>
+
+    </div>
+    
+    <div class="produit-description">
+    <h3>Description</h3>
+        <p>Notre Laptimer "Racelogic" fait tout comme un vrai :</p>
+      <div class="interface">
+        <h3>LEDs personnalisables</h3>
+        <p>
+          Les LEDs du Racelogic sont entièrement configurables : elles peuvent afficher les drapeaux de course pour indiquer les conditions (jaune, rouge, drapeau à damier, etc.) ou servir de LEDs de delta pour suivre votre rythme par rapport au meilleur tour.
+        </p>
+        <img src="led2.png" alt="LED Drapeaux" width="300">
+        <img src="delta.png" alt="LED Drapeaux" width="300">
+        <img src="current.png" alt="LED Drapeaux" width="300">
+        <img src="led.png" alt="LED Delta" width="300">
+      </div>
+
+      <!-- Vitesse -->
+      <div class="interface">
+        <h3>Vitesse en temps réel et vitesse maximale</h3>
+        <p>
+          Suivez votre vitesse instantanée pendant la course et consultez votre vitesse maximale atteinte pour analyser vos performances.
+        </p>
+        <img src="vitesse.png" alt="Vitesse en temps réel" width="300">
+        <img src="vmax.png" alt="Vitesse en temps réel" width="300">
+      </div>
+
+      <!-- Temps de tour -->
+      <div class="interface">
+        <h3>Meilleur temps et temps du dernier tour</h3>
+        <p>
+          Gardez un œil sur votre meilleur temps enregistré et le temps du dernier tour pour ajuster votre stratégie de course.
+        </p>
+        <img src="best.png" alt="Meilleur temps" width="300">
+        <img src="last.png" alt="Dernier tour" width="300">
+      </div>
+
+      <div class="interface">
+        <h3>Temps du tour en cours et delta</h3>
+        <p>
+          Affiche le temps du tour actuel et le delta par rapport au meilleur tour ou à vos références précédentes pour suivre votre progression en direct.
+        </p>
+        <img src="current.png" alt="Temps tour en cours" width="300">
+        <img src="delta.png" alt="Delta" width="300">
+      </div>
+
+      <!-- Nombre de tours -->
+      <div class="interface">
+        <h3>Nombre de tours et tour en cours</h3>
+        <p>
+          Visualisez le nombre total de tours effectués ainsi que le tour en cours pour mieux gérer votre course.
+        </p>
+        <img src="tour.png" alt="Nombre de tours" width="300">
+      </div>
+
+      <!-- Voitures autour -->
+      <div class="interface">
+        <h3>Voiture devant et derrière</h3>
+        <p>
+          Restez informé de la position des voitures autour de vous grâce aux indicateurs de voiture devant et derrière, pour anticiper vos dépassements.
+        </p>
+        <img src=".png" alt="Voiture devant" width="300">
+      </div>
+
+      <!-- Pression sur pédales -->
+      <div class="interface">
+        <h3>Pression sur frein et accélérateur</h3>
+        <p>
+          Affiche la pression appliquée sur les pédales de frein et d'accélérateur, utile pour analyser votre style de conduite et optimiser vos performances.
+        </p>
+        <img src="pédale.png" alt="Pression sur frein" width="300">
+      </div>
+    </div>
+  </main>
+
+  <section >
+<div id="overlay" class="hidden"></div>
+
+  <!-- Bouton flottant du panier -->
+  <div id="cart-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+      </svg>
+    <span id="cart-count">0</span>
+  </div>
+
+  <!-- Panneau du panier -->
+  <div id="cart-panel" class="hidden">
+  <h3>Votre Panier             
+    <button id="close-cart" aria-label="Fermer le panier" style="background: transparent; border: none; cursor: pointer; float: right; padding: 0; margin: 0;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#e62429" class="bi bi-x-square" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+      </svg>
+    </button>
+  </h3>
+
+  <ul id="liste-panier"></ul>
+  <p id="total-panier">Total : 0 €</p>
+
+  <!-- Boutons -->
+  <button onclick="viderPanier()">Vider</button>
+  <button id="btn-commander">Commander</button>
+
+  <!-- Zone pour le champ email et le statut -->
+  <div id="email-container" style="margin-top:10px; display:none;">
+    <input type="email" id="email-panier" name="email" placeholder="Votre email" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+    <button id="btn-envoyer" style="margin-top:5px;">Envoyer la commande</button>
+  </div>
+
+  <p id="panier-status" style="margin-top: 10px;"></p>
+</div>
+
+</div>
+</section>
+
+<footer>
+  <p>&copy; 2025 AVIX_3D - Tous droits réservés.</p>
+</footer>
+
+  <!-- Scripts -->
+<script src="script.js"></script>
+<script>
+  const prixBase = 99.99;
+  const surcout = {
+    "0": -3,        // Sans USB
+    "1m": 0,
+    "1.5m": 0.50,
+    "2m": 1,
+    "3m": 1.50,
+  };
+
+  let choix = { couleur: "Noir", usb: "1m", texture: "Carbone" };
+
+  function setOption(type, el){
+    const group = el.closest('.options');
+
+    // détermine quel sélecteur nettoyer suivant le groupe
+    let selector = '.color-btn';
+    if (group.querySelector('.color-btn')) selector = '.color-btn';
+    else if (group.querySelector('.cable-btn')) selector = '.cable-btn';
+    else if (group.querySelector('.texture-btn')) selector = '.texture-btn';
+
+    group.querySelectorAll(selector).forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+
+    choix[type] = el.dataset.value;
+    updatePrix();
+  }
+
+  function updatePrix(){
+    const usbSurcout = parseFloat(surcout[choix.usb] || 0);
+    const prixTotal = prixBase + usbSurcout;
+    document.getElementById('prix-produit').textContent = prixTotal.toFixed(2).replace('.', ',') + ' €';
+    return prixTotal;
+  }
+
+  function ajouterProduit(){
+    const prixTotal = updatePrix();
+    const usbText = choix.usb === "0" ? "Sans USB" : choix.usb;
+    const nomProduit = `Racelogic (${choix.couleur}, USB: ${usbText}, Texture: ${choix.texture})`;
+    ajouterAuPanier(nomProduit, prixTotal);
+  }
+
+  // initialisation propre à DOM ready
+  window.addEventListener('DOMContentLoaded', () => {
+    const firstColor = document.querySelector('.options.couleurs .color-btn');
+    if(firstColor){ firstColor.classList.add('active'); choix.couleur = firstColor.dataset.value; }
+
+      // initialisation USB
+    const usb1m = document.querySelector('.options.usb .cable-btn[data-value="1m"]');
+    if(usb1m){ usb1m.classList.add('active'); choix.usb = usb1m.dataset.value; }
+
+    const firstTexture = document.querySelector('.options.textures .texture-btn');
+    if(firstTexture){ firstTexture.classList.add('active'); choix.texture = firstTexture.dataset.value; }
+
+    updatePrix();
+  });
+
+  // miniatures
+  function changerImage(img) {
+    document.getElementById("photo-principale").src = img.src;
+    document.querySelectorAll(".galerie img").forEach(mini => mini.classList.remove("active"));
+    img.classList.add("active");
+  }
+</script>
+
+
+
+
+</body>
+</html>
