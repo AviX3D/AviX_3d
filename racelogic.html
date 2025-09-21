@@ -40,7 +40,7 @@
     <!-- Colonne droite : infos & options -->
     <div class="produit-details">
       <h2>Laptimer "Racelogic"</h2>
-      <p class="prix" id="prix-produit">99,99€</p>
+      <p class="prix" id="prix-produit">79.99€</p>
 
       <!-- Couleurs -->
       <div class="option-block">
@@ -56,7 +56,7 @@
 
       <!-- USB -->
       <div class="option-block">
-        <label>Longueur du câble USB :</label>
+        <label>Longueur du câble USB C :</label>
         <div class="options usb">
           <button class="cable-btn" data-value="0" onclick="setOption('usb', this)">
             <div class="bar"></div>Sans USB
@@ -217,13 +217,13 @@
   <!-- Scripts -->
 <script src="script.js"></script>
 <script>
-  const prixBase = 99.99;
+  const prixBase = 79.99;
   const surcout = {
-    "0": -3,        // Sans USB
+    "0": -5,        // Sans USB
     "1m": 0,
-    "1.5m": 0.50,
-    "2m": 1,
-    "3m": 1.50,
+    "1.5m": 1,
+    "2m": 1.5,
+    "3m": 2,
   };
 
   let choix = { couleur: "Noir", usb: "1m", texture: "Carbone" };
@@ -286,3 +286,4 @@
 
 </body>
 </html>
+
